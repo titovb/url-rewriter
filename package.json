@@ -1,0 +1,9 @@
+{
+  "name": "url-rewriter",
+  "scripts": {
+  },
+  "engines": {
+    "node": "20"
+  },
+  "packageManager": "npm@10.7.0"
+}

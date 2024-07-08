@@ -1,0 +1,32 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - POSTGRES_USER=$DB_USER
+      - POSTGRES_PASSWORD=$DB_PASSWORD
+      - POSTGRES_DB=$DB_NAME
+    ports:
+      - $DB_PORT:$DB_PORT
+    volumes:
+      - db:/var/lib/postgres
+
+  app:
+    depends_on:
+      - db
+    build: '.'
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - $PORT:$PORT
+    environment:
+      - NODE_ENV=development
+      - DB_HOST=db
+    tty: true
+    stdin_open: true
+
+volumes:
+  db:

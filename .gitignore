@@ -1,0 +1,15 @@
+# Dependencies
+node_modules
+
+# Testing
+coverage
+
+# Build Outputs
+out/
+build
+dist
+
+# Debug
+npm-debug.log*
+
+.idea
