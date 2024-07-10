@@ -1,9 +1,16 @@
 {
   "name": "url-rewriter",
   "scripts": {
+    "build": "pnpm --recursive exec -- pnpm run build",
+    "start": "pnpm --recursive exec -- pnpm run start"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "rimraf": "^5.0.7",
+    "typescript": "^5.5.3"
   },
   "engines": {
     "node": "20"
   },
-  "packageManager": "npm@10.7.0"
+  "packageManager": "pnpm@9.5.0"
 }

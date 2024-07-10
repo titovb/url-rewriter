@@ -1,5 +1,4 @@
 import { Ajv } from 'ajv'
-import * as dotenv from 'dotenv'
 import { Static, Type } from '@sinclair/typebox'
 
 const ConfigSchema = Type.Object(
@@ -11,20 +10,14 @@ const ConfigSchema = Type.Object(
     ]),
     ip: Type.String(),
     port: Type.Number(),
-    db_host: Type.String(),
-    db_port: Type.Number(),
-    db_user: Type.String(),
-    db_password: Type.String(),
-    db_name: Type.String()
+    db_url: Type.String(),
   },
   { additionalProperties: true }
 )
 export type Config = Static<typeof ConfigSchema>
 
 function loadConfig(): Record<string, unknown> {
-  dotenv.config()
-  const env = process.env
-  return objKeysToLowerCase(env)
+  return objKeysToLowerCase(process.env)
 }
 
 function objKeysToLowerCase(

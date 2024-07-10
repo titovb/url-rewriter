@@ -5,13 +5,15 @@
   "author": "titovb",
   "license": "UNLICENSED",
   "scripts": {
-    "dev": "vite",
+    "prebuild": "rimraf dist",
     "build": "tsc -b && vite build",
-    "lint": "eslint react --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "dev": "vite",
+    "start": "vite preview --open",
+    "lint": "eslint react --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
   },
   "dependencies": {
     "antd": "^5.19.1",
+    "axios": "^1.7.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.24.1"
@@ -25,7 +27,6 @@
     "eslint": "^8.57.0",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.7",
-    "typescript": "^5.2.2",
     "vite": "^5.3.1"
   }
 }

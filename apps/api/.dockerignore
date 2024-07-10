@@ -7,6 +7,4 @@ coverage
 .prettierrc.json
 eslint.config.mjs
 
-drizzle.config.ts
-
 README.md

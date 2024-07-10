@@ -8,15 +8,17 @@
     "prebuild": "rimraf dist",
     "build": "tsc",
     "build:watch": "tsc -w",
-    "start": "node dist/main.js",
-    "start:watch": "cross-env NODE_ENV=development node --watch dist/main.js",
-    "dev": "concurrently -k -p \"[{name}]\" -n \"TypeScript,App\" -c \"yellow.bold,cyan.bold\" \"npm:build:watch\" \"npm:start:watch\"",
+    "start": "node --env-file=.env dist/main.js",
+    "start:watch": "cross-env NODE_ENV=development node --env-file=.env --watch dist/main.js",
+    "dev": "concurrently -k -p \"[{name}]\" -n \"TypeScript,App\" -c \"yellow.bold,cyan.bold\" \"pnpm run build:watch\" \"pnpm run start:watch\"",
     "lint": "eslint src test",
     "lint:fix": "eslint src test --fix",
     "format": "prettier src test -w",
     "test": "glob -c \"cross-env NODE_ENV=test tsx --tsconfig ./test/tsconfig.json --test --test-concurrency=1\" \"./test/**/*.test.ts\"",
-    "test:coverage": "c8 npm run test",
-    "drizzle:generate": "drizzle-kit generate"
+    "test:coverage": "c8 pnpm run test",
+    "drizzle:generate": "drizzle-kit generate",
+    "drizzle:migrate": "drizzle-kit migrate",
+    "drizzle:studio": "drizzle-kit studio"
   },
   "dependencies": {
     "@fastify/cors": "^9.0.1",
@@ -27,7 +29,6 @@
     "@sinclair/typebox": "^0.32.34",
     "ajv": "^8.16.0",
     "ajv-formats": "^3.0.1",
-    "dotenv": "^16.4.5",
     "drizzle-orm": "^0.31.2",
     "drizzle-typebox": "^0.1.1",
     "fastify": "^4.28.1",
@@ -42,7 +43,6 @@
     "@types/node": "^20.14.9",
     "@types/pg": "^8.11.6",
     "c8": "^10.1.2",
-    "concurrently": "^8.2.2",
     "cross-env": "^7.0.3",
     "drizzle-kit": "^0.22.8",
     "eslint": "^9.6.0",
@@ -50,9 +50,7 @@
     "fastify-tsconfig": "^2.0.0",
     "glob": "^10.4.3",
     "prettier": "3.3.2",
-    "rimraf": "^5.0.7",
     "tsx": "^4.16.2",
-    "typescript": "^5.5.3",
     "typescript-eslint": "^8.0.0-alpha.39"
   }
 }
